@@ -1,17 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
-	"os"
 	"strconv"
 )
 
-func main() {
+func PrintTopNMostCarriedCalories(n uint) {
 	input := LoadInput("input.txt")
-
-	var n uint = 3
 
 	sumOfAllMostCarriedCalories := 0
 	topThreeMostCarriedCalories := GetTopNMostCarriedCalories(input, n)
@@ -21,28 +17,6 @@ func main() {
 	}
 
 	fmt.Printf("Sum of the top %v most carried calories is %v\n", n, sumOfAllMostCarriedCalories)
-}
-
-func LoadInput(fileName string) []string {
-	input := []string{}
-
-	file, err := os.Open(fileName)
-	if err != nil {
-		log.Panic(err)
-	}
-
-	fileScanner := bufio.NewScanner(file)
-	fileScanner.Split(bufio.ScanLines)
-
-	for fileScanner.Scan() {
-		input = append(input, fileScanner.Text())
-	}
-
-	if err = file.Close(); err != nil {
-		log.Panic(err)
-	}
-
-	return input
 }
 
 func GetTopNMostCarriedCalories(input []string, n uint) []int {
